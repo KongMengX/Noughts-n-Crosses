@@ -7,6 +7,7 @@ const char EmptyCell = ' ';
 const char HumanMarker = 'X';
 const char ComputerMarker = 'O';
 
+
 using Board = std::array<char, 9>;
 
 Board createBoard();
@@ -24,6 +25,8 @@ int readHumanMove(const Board& board);
 #ifndef NOUGHTS_AND_CROSSES_TEST
 int main()
 {
+    char replay;
+  do{
     Board board = createBoard();
 
     std::cout << "Noughts and Crosses\n";
@@ -52,8 +55,18 @@ int main()
     } else {
         std::cout << "It's a draw!\n";
     }
+    
 
-    return 0;
+    std::cout << "Would you like to play again? Y/N\n";
+    
+    while ((replay != 'y') || (replay != 'Y') || (replay != 'N') || (replay != 'n')) {
+    std::cin >> replay;
+    if ((replay == 'Y') || (replay == 'y')) { std::cout << "building board again...\n\n\n\n"; break;}
+    else if ((replay == 'N') || (replay == 'n')) { std::cout << "closing board...\n"; return 0;}
+    else { std::cout << "Not a valid option. Please pick between Y/N\n";}
+    }
+  } while ((replay == 'y') || (replay == 'Y'));
+  return 0;
 }
 #endif
 
